@@ -4,7 +4,7 @@ from models.user import User
 from models.article import Article
 
 
-class UserC(MethodView):
+class User_(MethodView):
 
     def get(self, user_id):
 

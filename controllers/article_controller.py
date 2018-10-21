@@ -7,7 +7,7 @@ from models.user import User
 from models.article import Article
 
 
-class ArticleC(MethodView):
+class Article_(MethodView):
 
     def get(self, article_id):
 

@@ -22,13 +22,17 @@ class Register(MethodView):
     def post(self):
 
         registration_form = RegisterForm()
-        new_user = User(full_name=registration_form.full_name.data,
-                        username=registration_form.username.data,
-                        email=registration_form.email.data,
-                        adress=registration_form.adress.data,
-                        password=generate_password_hash(registration_form.password.data))
 
-        db.session.add(new_user)
-        db.session.commit()
+        if registration_form.validate_on_submit():
+
+            new_user = User(full_name=registration_form.full_name.data,
+                            username=registration_form.username.data,
+                            email=registration_form.email.data,
+                            adress=registration_form.adress.data,
+                            password=generate_password_hash(registration_form.password.data))
+
+            db.session.add(new_user)
+            db.session.commit()
+
         return redirect(url_for('index'))
 

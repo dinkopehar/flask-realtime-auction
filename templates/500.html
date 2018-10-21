@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'partials/head_includes.html' %}
+    <style>
+
+
+
+        .card {
+            padding: 3rem;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            -moz-transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        #server_error{
+            font-family: 'Lobster', cursive;
+            font-size: 10rem;
+            color: #EE6E73;
+            margin-bottom: 1rem;
+            margin-top: 1rem;
+        }
+        #msg{
+            display: block;
+        }
+        a{
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <p id="server_error">500</p>
+    <span id="msg">It was our fault... We will fix it, we promise.</span>
+    <a href="{{ url_for('index') }}">Back to safety</a>
+</div>
+
+</body>
+</html>
