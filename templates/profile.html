@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'partials/head_includes.html' %}
+</head>
+<body>
+
+{% include 'partials/navbar.html' %}
+
+<div class="container">
+    <div class="row">
+        <div class="col s12 m6">
+            <div class="card-panel grey lighten-5 z-depth-1">
+                <img src="{{ url_for('static', filename='profile_images/' + user.profile_image) }}" alt=""
+                     class="responsive-img" width="200" height="200"> <!-- notice the "circle" class -->
+                <form action="" method="post" enctype="multipart/form-data">
+                    <div class="file-field input-field">
+                        <div class="btn" id="swap">
+                            <span id="new_image_span_hiding">New image</span>
+                            <input id="new_image_file_hiding" name="fileToSave" type="file">
+                            <input class="btn" id="swap_submit" type="submit">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate file_writing" type="text">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col m6 .hide-on-med-and-down">
+            <blockquote>
+                <h3 style="color: #0d47a1">
+                    <b>{{ user.username }}</b>
+                </h3>
+                <h6>
+                    <span style="color: #ff3d00">{{ articles|length }}</span> Articles Selling
+                </h6>
+            </blockquote>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <ul class="tabs tabs-fixed-width tab-demo z-depth-1">
+                <li class="tab"><a class="active" href="#basic_info">Basic Info</a></li>
+                <li class="tab"><a href="#articles">Articles</a></li>
+            </ul>
+            <div id="basic_info" class="col s12">
+                <div>
+                    <h5><b>Full Name</b></h5>
+                    <h6><i>{{ user.full_name }}</i></h6>
+                    <br>
+                    <hr>
+                    <h5><b>Email</b></h5>
+                    <h6><i>{{ user.email }}</i></h6>
+                    <br>
+                    <hr>
+                    <h5><b>Address</b></h5>
+                    <h6><i>{{ user.adress }}</i></h6>
+                    <br>
+                    <hr>
+                </div>
+            </div>
+            <div id="articles" class="col s12">
+                {% for article in articles %}
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="{{ url_for('static', filename='article_images/' + article.article_image) }}">
+                            <span class="card-title">{{ article.name }}</span>
+                        </div>
+                        <div class="card-content">
+                            <p>{{ article.description }}</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="{{ url_for('article', article_id=article.id) }}">See more</a>
+                        </div>
+                    </div>
+                {% endfor %}
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--JavaScript at end of body for optimized loading-->
+<script type="text/javascript" src="{{ url_for('static', filename='js/materialize.min.js') }}"></script>
+<script>
+    $(document).ready(function () {
+
+        $('.tabs').tabs();
+
+        $('#swap_submit').hide();
+
+        $('.file_writing').change(function () {
+            $('#new_image_span_hiding').hide();
+            $('#new_image_file_hiding').hide();
+            $('#swap_submit').show();
+            $('#swap').removeClass('btn');
+        })
+    });
+</script>
+</body>
+</html>

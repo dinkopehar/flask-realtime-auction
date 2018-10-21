@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'partials/head_includes.html' %}
+</head>
+<body>
+
+{% include 'partials/navbar.html' %}
+
+<div class="container">
+    <div class="row">
+        <form action="" method="post" enctype="multipart/form-data">
+            {{ article_form.csrf_token }}
+            <div class="input-field col s12 m8">
+                <i class="material-icons prefix">account_circle</i>
+                {{ article_form.name(class_="validate") }}
+                {{ article_form.name.label }}
+            </div>
+            <div class="input-field col s12 m8">
+                <i class="material-icons prefix">vpn_key</i>
+                {{ article_form.category(class_="validate") }}
+                {{ article_form.category.label }}
+            </div>
+            <div class="input-field col s12 m8">
+                <i class="material-icons prefix">vpn_key</i>
+                {{ article_form.town(class_="validate") }}
+                {{ article_form.town.label }}
+            </div>
+            <div class="input-field col s12 m8">
+                <i class="material-icons prefix">vpn_key</i>
+                {{ article_form.minimal_price(class_="validate") }}
+                {{ article_form.minimal_price.label }}
+            </div>
+            <div class="file-field input-field col s12 m8">
+                <div class="btn">
+                    <span>File</span>
+                    {{ article_form.article_image }}
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
+            </div>
+            <div class="input-field col s12 m8">
+                {{ article_form.time_left }}
+                {{ article_form.time_left.label }}
+            </div>
+            <div class="input-field col s12 m8">
+                <i class="material-icons prefix">vpn_key</i>
+                {{ article_form.description(class_="materialize-textarea") }}
+                {{ article_form.description.label }}
+            </div>
+            <div class="input-field col s12 m8">
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--JavaScript at end of body for optimized loading-->
+<script type="text/javascript" src="{{ url_for('static', filename='js/materialize.min.js') }}"></script>
+<script>
+    $(document).ready(function () {
+        $('select').formSelect();
+    });
+</script>
+</body>
+</html>

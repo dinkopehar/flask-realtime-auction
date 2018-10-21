@@ -1,4 +1,4 @@
-choices=[
+choices = [
     ('dijelovi i oprema za auto', 'Dijelovi i Oprema za Auto'),
     ('automobil', 'Automobil'),
     ('bicikl', 'Bicikl'),

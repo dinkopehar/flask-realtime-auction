@@ -1,0 +1,37 @@
+<ul id="dropdown1" class="dropdown-content">
+    {% if session %}
+        <li><a href="{{ url_for('profile') }}">Profile</a></li>
+        <li class="divider"></li>
+        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+    {% else %}
+        <li><a href="{{ url_for('login') }}">Login</a></li>
+        <li class="divider"></li>
+        <li><a href="{{ url_for('register') }}">Register</a></li>
+    {% endif %}
+
+</ul>
+<nav>
+    <div class="nav-wrapper navbar-fixed">
+        <a id="logo" href="{{ url_for('index') }}" class="brand-logo center"
+           style="font-family: 'Lobster', cursive; font-size: 36px">Aukcije Online</a>
+        <ul class="right">
+            <!-- Dropdown Trigger -->
+            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Menu<i class="material-icons right">arrow_drop_down</i></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<script>
+    $(document).ready(function () {
+        $(".dropdown-trigger").dropdown();
+
+        if ($(window).width() < 500) {
+            $("#logo").removeClass('center')
+            $("#logo").addClass('left')
+        } else {
+            $("#logo").removeClass('left')
+            $("#logo").addClass('center')
+        }
+    });
+</script>

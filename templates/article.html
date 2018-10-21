@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'partials/head_includes.html' %}
+</head>
+<body>
+
+{% include 'partials/navbar.html' %}
+
+<div class="container">
+    <div class="row">
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-image">
+                    <img src="{{ url_for('static', filename= "article_images/" + article.article_image) }}">
+                    <span class="card-title">{{ article.name }}</span>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <i class="small material-icons">place</i>
+                        <span style="color: #ff8a65;">{{ article.town|upper }}</span>
+                    </div>
+
+                    <p>{{ article.description }}</p>
+                </div>
+                <div class="card-action">
+                    <a href="#">No. <b style="color: #000">{{ article.id }}</b></a>
+                    <a href="#">Views <b style="color: #000">{{ article.views }}</b></a>
+                    <a href="{{ url_for('user', user_id=user.id) }}">{{ user.username }}</a>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m6">
+            <table class="striped">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>User name</th>
+                    <th>Price</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% if top_users|length %}
+                    {% for user in top_users %}
+                        <tr>
+                            <th>{{ loop.index }}</th>
+                            <td>{{ user.username }}</td>
+                            <td>{{ offers_by_article[loop.index0].price }} KM</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <th scope="row">0</th>
+                        <td>There is no offers on this article</td>
+                        <td>0 KM</td>
+                    </tr>
+                {% endif %}
+                </tbody>
+            </table>
+            {% if session %}
+                <form action="" method="POST">
+                    <div class="input-field col s6">
+                        <input name="new_price" id="new_price" type="number" min="{{ article.minimal_price }}"
+                               class="validate">
+                        <label for="new_price">Enter new Price</label>
+                        <span class="helper-text">Minimal price is: {{ article.minimal_price }} KM</span>
+                    </div>
+                    <div class="input-field col s12 m8">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<!--JavaScript at end of body for optimized loading-->
+<script type="text/javascript" src="{{ url_for('static', filename='js/materialize.min.js') }}"></script>
+</body>
+</html>
