@@ -1,5 +1,5 @@
 import os
-from flask import redirect, url_for, render_template, session
+from flask import redirect, url_for, render_template, session, request
 from flask.views import MethodView
 from werkzeug.utils import secure_filename
 from forms.article_form import ArticleForm
@@ -30,7 +30,11 @@ class CreateArticle(MethodView):
             f = article_form.article_image.data
             name = current_user.username + "__" + f.filename
             name = secure_filename(name)
-            f.save(os.path.join("./static/article_images/", name))
+
+            if request.headers['Host'] == '127.0.0.1:5000':
+                f.save(os.path.join("./static/article_images/", name))
+            else:
+                f.save(os.path.join(os.curdir, 'static', 'article_images', name))
 
             new_article = Article(name=article_form.name.data,
                                   category=article_form.category.data,

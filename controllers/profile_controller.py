@@ -36,7 +36,6 @@ class Profile(MethodView):
         if request.headers['Host'] == '127.0.0.1:5000':
             file.save(os.path.join("./static/profile_images/", name))
         else:
-            print('Linux')
             file.save(os.path.join(os.curdir, 'static', 'profile_images', name))
 
         user.profile_image = name

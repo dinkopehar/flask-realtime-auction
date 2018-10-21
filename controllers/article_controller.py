@@ -47,11 +47,9 @@ class Article_(MethodView):
 
         try:
             expected_value = int(request.form['new_price'])
-            print(expected_value)
             if expected_value < article.minimal_price:
                 raise ValueError
         except ValueError:
-            print()
             flash("Price lower than expected")
             return redirect(url_for('article', article_id=article_id))
         except Exception:
