@@ -35,11 +35,6 @@ app.add_url_rule('/create_article', view_func=CreateArticle.as_view('create_arti
 app.add_url_rule('/article/<int:article_id>', view_func=Article_.as_view('article'))
 app.add_url_rule('/search', view_func=Search.as_view('search'))
 
-@app.route('/sitemap')
-def sitemap():
-    return app.send_static_file('sitemap.xml')
-
-
 admin.add_view(AdminModelView(User, db.session))
 admin.add_view(AdminModelView(Article, db.session))
 admin.add_view(AdminModelView(Offer, db.session))
