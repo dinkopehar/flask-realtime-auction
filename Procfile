@@ -1,1 +1,1 @@
-gunicorn --worker-class eventlet -w 1 aukcija:app
+web: gunicorn -k eventlet aukcija:app
