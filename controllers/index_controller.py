@@ -8,7 +8,7 @@ class Index(MethodView):
 
     def get(self):
 
-        articles = Article.query.order_by(Article.id).limit(5).all()
+        articles = Article.query.order_by(Article.id.desc()).limit(5).all()
 
         return render_template('index.html',
                                title='Home | Aukcije Online',

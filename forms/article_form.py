@@ -5,16 +5,16 @@ from .categories import choices
 from wtforms.fields import (StringField,
                             SelectField,
                             IntegerField,
-                            DateTimeField,
+                            TimeField,
                             TextAreaField)
 
 
 class ArticleForm(FlaskForm):
-    name = StringField('Name', validators=[DataRequired()])
+    name = StringField('Name of Article', validators=[DataRequired()])
     category = SelectField(u'Category', choices=choices)
     town = StringField('Town', validators=[DataRequired()])
     minimal_price = IntegerField('Minimal price')
     article_image = FileField('Article_image', validators=[FileRequired()])
-    time_left = DateTimeField('Time to end', validators=[InputRequired()],
-                              format='%Y-%m-%d %H:%M:%S')
+    end_day = StringField('End Date', validators=[InputRequired()])  # String converted to date
+    end_time = TimeField('End Time', validators=[InputRequired()])
     description = TextAreaField('Description', validators=[DataRequired()])

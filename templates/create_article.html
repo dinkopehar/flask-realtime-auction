@@ -17,17 +17,17 @@
                 {{ article_form.name.label }}
             </div>
             <div class="input-field col s12 m8">
-                <i class="material-icons prefix">vpn_key</i>
+                <i class="material-icons prefix">assignment</i>
                 {{ article_form.category(class_="validate") }}
                 {{ article_form.category.label }}
             </div>
             <div class="input-field col s12 m8">
-                <i class="material-icons prefix">vpn_key</i>
+                <i class="material-icons prefix">place</i>
                 {{ article_form.town(class_="validate") }}
                 {{ article_form.town.label }}
             </div>
             <div class="input-field col s12 m8">
-                <i class="material-icons prefix">vpn_key</i>
+                <i class="material-icons prefix">attach_money</i>
                 {{ article_form.minimal_price(class_="validate") }}
                 {{ article_form.minimal_price.label }}
             </div>
@@ -41,8 +41,14 @@
                 </div>
             </div>
             <div class="input-field col s12 m8">
-                {{ article_form.time_left(placeholder="Example: 2018-12-30 14:37:37") }}
-                {{ article_form.time_left.label }}
+                <i class="material-icons prefix">date_range</i>
+                {{ article_form.end_day(class_="datepicker") }}
+                {{ article_form.end_day.label }}
+            </div>
+            <div class="input-field col s12 m8">
+                <i class="material-icons prefix">access_time</i>
+                {{ article_form.end_time(class_="timepicker") }}
+                {{ article_form.end_time.label }}
             </div>
             <div class="input-field col s12 m8">
                 <i class="material-icons prefix">vpn_key</i>
@@ -63,6 +69,8 @@
 <script>
     $(document).ready(function () {
         $('select').formSelect();
+        $('.datepicker').datepicker({ format: 'dd-mm-yyyy' });
+        $('.timepicker').timepicker({twelveHour: false});
     });
 </script>
 </body>

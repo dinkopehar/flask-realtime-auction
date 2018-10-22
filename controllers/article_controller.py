@@ -26,8 +26,6 @@ class Article_(MethodView):
             for offer in offers_by_article:
                 top_users.append(User.query.filter_by(id=offer.user_id).first())
 
-        deltas = article.time_left.replace(microsecond=0) - datetime.datetime.now().replace(microsecond=0)
-
         session_username = session.get('username')
         if user.username == session_username:
             session_username = None
@@ -36,7 +34,6 @@ class Article_(MethodView):
                                title='Article | Aukcije Online',
                                article=article,
                                user=user,
-                               deltas=deltas,
                                offers_by_article=offers_by_article,
                                top_users=top_users,
                                session=session_username)

@@ -1,3 +1,4 @@
+import datetime
 import os
 from flask import redirect, url_for, render_template, session, request
 from flask.views import MethodView
@@ -23,6 +24,7 @@ class CreateArticle(MethodView):
     def post(self):
 
         article_form = ArticleForm()
+        end_day = datetime.datetime.strptime(article_form.end_day.data, '%d-%m-%Y')
 
         if article_form.validate_on_submit():
             current_user = User.query.filter_by(username=session.get('username')).first()
@@ -41,12 +43,18 @@ class CreateArticle(MethodView):
                                   town=article_form.town.data,
                                   minimal_price=article_form.minimal_price.data,
                                   article_image=name,
-                                  time_left=article_form.time_left.data,
+                                  end_day=end_day,
+                                  end_time=article_form.end_time.data,
                                   description=article_form.description.data,
                                   user_id=current_user.id)
 
             db.session.add(new_article)
             db.session.commit()
 
-        return redirect(url_for('create_article'))
+            return redirect(url_for('article',
+                                    article_id=Article.query.order_by(Article.id.desc()).first().id))
+        else:
+            return redirect(url_for('create_article'))
+
+
 
