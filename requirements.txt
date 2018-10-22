@@ -1,11 +1,17 @@
+certifi==2018.10.15
+chardet==3.0.4
 Click==7.0
 Flask==1.0.2
 Flask-Admin==1.5.2
 Flask-SQLAlchemy==2.3.2
 Flask-WTF==0.14.2
+idna==2.7
 itsdangerous==0.24
 Jinja2==2.10
 MarkupSafe==1.0
+requests==2.20.0
 SQLAlchemy==1.2.12
+tinify==1.5.1
+urllib3==1.24
 Werkzeug==0.14.1
 WTForms==2.2.1
