@@ -9,5 +9,5 @@ class RegisterForm(FlaskForm):
     email = EmailField('Email Adress', validators=[DataRequired(), Email()])
     username = StringField('Username', validators=[DataRequired()])
     adress = StringField('Address', validators=[DataRequired()])
-    password = PasswordField('password', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
     recaptcha = RecaptchaField()

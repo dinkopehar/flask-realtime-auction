@@ -1,5 +1,5 @@
 import os
-
+import tinify  # tinypng.com for compression
 from flask import redirect, url_for, render_template, session, request
 from flask.views import MethodView
 from werkzeug.utils import secure_filename
@@ -33,10 +33,16 @@ class Profile(MethodView):
         name = user.username + "_" + file.filename
         name = secure_filename(name)
 
+        tinify.key = os.environ['TINIFY']  # Compression of image
+
         if request.headers['Host'] == '127.0.0.1:5000':
-            file.save(os.path.join("./static/profile_images/", name))
+            tinify.from_file(file).to_file(os.path.join("./static/profile_images/",
+                                                        name))
         else:
-            file.save(os.path.join(os.curdir, 'static', 'profile_images', name))
+            tinify.from_file(file).to_file(os.path.join(os.curdir,
+                                                        'static',
+                                                        'profile_images',
+                                                        name))
 
         user.profile_image = name
         db.session.commit()

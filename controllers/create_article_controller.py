@@ -1,5 +1,6 @@
 import datetime
 import os
+import tinify
 from flask import redirect, url_for, render_template, session, request
 from flask.views import MethodView
 from werkzeug.utils import secure_filename
@@ -33,10 +34,16 @@ class CreateArticle(MethodView):
             name = current_user.username + "__" + f.filename
             name = secure_filename(name)
 
+            tinify.key = os.environ['TINIFY']
+
             if request.headers['Host'] == '127.0.0.1:5000':
-                f.save(os.path.join("./static/article_images/", name))
+                tinify.from_file(f).to_file(os.path.join("./static/article_images/",
+                                                         name))
             else:
-                f.save(os.path.join(os.curdir, 'static', 'article_images', name))
+                tinify.from_file(f).to_file(os.path.join(os.curdir,
+                                                         'static',
+                                                         'article_images',
+                                                         name))
 
             new_article = Article(name=article_form.name.data,
                                   category=article_form.category.data,
