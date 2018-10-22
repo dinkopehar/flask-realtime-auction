@@ -79,9 +79,4 @@ fabric.properties
 # Sonarlint plugin
 .idea/sonarlint
 
-# Ignore everything in this directory
-static/article_images/**
-# Except this file
-!static/article_images
-
 # End of https://www.gitignore.io/api/pycharm
