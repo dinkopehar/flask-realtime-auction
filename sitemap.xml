@@ -8,18 +8,18 @@
 
 
 <url>
-  <loc>http://pinkfrojd.pythonanywhere.com/</loc>
-  <lastmod>2018-10-21T00:40:17+00:00</lastmod>
+  <loc>https://aukcije-online.herokuapp.com/</loc>
+  <lastmod>2018-10-22T23:06:16+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>http://pinkfrojd.pythonanywhere.com/login</loc>
-  <lastmod>2018-10-21T00:40:17+00:00</lastmod>
+  <loc>https://aukcije-online.herokuapp.com/login</loc>
+  <lastmod>2018-10-22T23:06:16+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://pinkfrojd.pythonanywhere.com/register</loc>
-  <lastmod>2018-10-21T00:40:17+00:00</lastmod>
+  <loc>https://aukcije-online.herokuapp.com/register</loc>
+  <lastmod>2018-10-22T23:06:16+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 
