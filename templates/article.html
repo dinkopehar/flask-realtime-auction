@@ -25,7 +25,7 @@
                 </div>
                 <div class="card-action">
                     <a href="#">No. <b style="color: #000">{{ article.id }}</b></a>
-                    <a href="#">Views <b style="color: #000">{{ article.views }}</b></a>
+                    <a id="views" href="#">Views <b style="color: #000">{{ article.views }}</b></a>
                     <a href="{{ url_for('user', user_id=user.id) }}">{{ user.username }}</a>
                 </div>
             </div>
@@ -40,7 +40,7 @@
                 </tr>
                 </thead>
 
-                <tbody>
+                <tbody id="offers">
                 {% if top_users|length %}
                     {% for user in top_users %}
                         <tr>
@@ -78,5 +78,31 @@
 </div>
 <!--JavaScript at end of body for optimized loading-->
 <script type="text/javascript" src="{{ url_for('static', filename='js/materialize.min.js') }}"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+    let socket = io.connect('http://' + document.domain + ':' + location.port);
+    const articleId = location.pathname.replace('/article/', '')
+
+    socket.emit('article', {articleId: articleId});
+
+    socket.on('articleResponse', function(data){
+        if(articleId == data['id']){
+            document.querySelector('#views').textContent = data['views'];
+
+            if(data['offers'].length){
+                $('#offers').empty();
+                for (let offer = 0; offer < data['offers'].length; offer++) {
+                    $('#offers').append('<tr>' +
+                        '<th>'+ (offer+1) +'</th>' +
+                        '<td>'+ data['offers'][offer]['username'] +'</td>' +
+                        '<td>'+ data['offers'][offer]['price'] +'</td>' +
+                        '</tr>')
+                }
+            }
+        }
+    })
+
+
+</script>
 </body>
 </html>

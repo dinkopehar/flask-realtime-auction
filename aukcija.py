@@ -1,4 +1,7 @@
+import json
+
 from flask import Flask, render_template
+from flask_socketio import SocketIO, emit
 import config
 from flask_admin import Admin
 from models.user import User
@@ -20,6 +23,7 @@ app = Flask(__name__)
 app.config.from_object(config.Config)
 db.init_app(app)
 admin = Admin(app)
+socketio = SocketIO(app)
 
 app.add_url_rule('/', view_func=Index.as_view('index'))
 app.add_url_rule('/login', view_func=Login.as_view('login'))
@@ -46,5 +50,20 @@ def internal_server_error(e):
     return render_template('500.html'), 500
 
 
+@socketio.on('article')
+def article(resp):
+    _article = Article.query.filter_by(id=resp['articleId']).first()
+    offers = Offer.query.filter_by(article_id=_article.id).order_by(Offer.price.desc()).limit(3).all()
+    max_offer = []
+    for offer in offers:
+        user = User.query.filter_by(id=offer.user_id).first()
+        _offer = {'username': user.username, 'price': offer.price}
+        max_offer.append(_offer)
+
+    article_resp = {'id': _article.id, 'views': _article.views,
+                    'offers': max_offer}
+    emit('articleResponse', article_resp, broadcast=True)
+
+
 if __name__ == '__main__':
-    app.run()
+    socketio.run(app)
