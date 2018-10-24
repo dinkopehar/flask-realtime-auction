@@ -85,19 +85,17 @@
 
     socket.emit('article', {articleId: articleId});
 
-    socket.on('articleResponse', function(data){
-        if(articleId == data['id']){
-            document.querySelector('#views').textContent = data['views'];
+    socket.on('articleResponse' + articleId, function(data){
+        document.querySelector('#views').textContent = data['views'];
 
-            if(data['offers'].length){
-                $('#offers').empty();
-                for (let offer = 0; offer < data['offers'].length; offer++) {
-                    $('#offers').append('<tr>' +
-                        '<th>'+ (offer+1) +'</th>' +
-                        '<td>'+ data['offers'][offer]['username'] +'</td>' +
-                        '<td>'+ data['offers'][offer]['price'] +'</td>' +
-                        '</tr>')
-                }
+        if(data['offers'].length){
+            $('#offers').empty();
+            for (let offer = 0; offer < data['offers'].length; offer++) {
+                $('#offers').append('<tr>' +
+                    '<th>'+ (offer+1) +'</th>' +
+                    '<td>'+ data['offers'][offer]['username'] +'</td>' +
+                    '<td>'+ data['offers'][offer]['price'] +'</td>' +
+                    '</tr>')
             }
         }
     })

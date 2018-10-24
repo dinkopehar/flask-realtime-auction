@@ -1,5 +1,3 @@
-import json
-
 from flask import Flask, render_template
 from flask_socketio import SocketIO, emit
 import config
@@ -62,7 +60,7 @@ def article(resp):
 
     article_resp = {'id': _article.id, 'views': _article.views,
                     'offers': max_offer}
-    emit('articleResponse', article_resp, broadcast=True)
+    emit('articleResponse' + str(article_resp['id']), article_resp, broadcast=True)
 
 
 if __name__ == '__main__':
