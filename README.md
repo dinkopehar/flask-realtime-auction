@@ -1,1 +1,1 @@
-Check more at [pinkfrojd.pythonanywhere.com](http://pinkfrojd.pythonanywhere.com)
+Check more at [http://aukcije-online.herokuapp.com](http://aukcije-online.herokuapp.com)
