@@ -35,9 +35,8 @@ Article page:
 1. Go to desired location where you want to place project and clone using `git clone https://github.com/dinko-pehar/flask-realtime-auction.git && cd flask-realtime-auction`
 2. Create virtual environment 
 3. With virtual env activated, install dependencies using pip as `pip install -r requirements.txt`
-4. Export `FLASK_APP` environment variable to be equal to **aukcija** (e.g. `export FLASK_APP=aukcija`)
-5. (*OPTIONAL*) Export `RECAPTCHA_PUBLIC_KEY` and `RECAPTCHA_PRIVATE_KEY` to use *reCaptcha* on registration form. You can generate keys at https://www.google.com/recaptcha/intro/v3.html
-6. With `flask run`, you will run and expose application on port *5000*
+4. (*OPTIONAL*) Export `RECAPTCHA_PUBLIC_KEY` and `RECAPTCHA_PRIVATE_KEY` to use *reCaptcha* on registration form. You can generate keys at https://www.google.com/recaptcha/intro/v3.html
+5. With `flask run`, you will run and expose application on port *5000*
 
 ---
 
