@@ -13,7 +13,7 @@ Features:
 
 ## Preview
 
-Check at [http://aukcije-online.herokuapp.com](http://aukcije-online.herokuapp.com). It should load in few seconds if dyno is down.
+~Check at [http://aukcije-online.herokuapp.com](http://aukcije-online.herokuapp.com)~. Heroku undergone paid plans only so I deleted Heroku account since this was the only project I had online on their platform.
 
 You can use username `dummy` and password `dummy123` to look around and explore(*create an article, update profile and bid on articles*)
 
